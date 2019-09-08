@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Post;
 use App\Http\Resources\Post as PostResource;
 
@@ -48,6 +47,16 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         return new PostResource($post);
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        $posts = Post::where('title', 'LIKE', '%' . $q . '%')
+            ->orWhere('body', 'LIKE', '%' . $q . '%')
+            ->get();
+
+        return PostResource::collection($posts);
     }
 
     /**

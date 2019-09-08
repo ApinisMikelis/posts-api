@@ -21,6 +21,8 @@ Route::get('posts', 'PostController@index');
 
 Route::get('post/{id}', 'PostController@show');
 
+Route::get('search', 'PostController@search');
+
 Route::post('post', 'PostController@store');
 
 Route::put('post', 'PostController@store');
