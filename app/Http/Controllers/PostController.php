@@ -27,8 +27,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = $request->isMethod('put') ? Post::findOrFail($request->post_id) : new Post;
-        $post->id = $request->input('post_id');
+        $post = $request->isMethod('put') ? Post::findOrFail($request->id) : new Post;
+        $post->id = $request->input('id');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
 
